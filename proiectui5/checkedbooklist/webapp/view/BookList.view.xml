@@ -1,0 +1,168 @@
+<mvc:View
+	controllerName="org.ubb.books.controller.Book"
+	xmlns="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:u="sap.ui.unified"
+	xmlns:c="sap.ui.core"
+	xmlns:m="sap.m"
+	height="100%">
+	<m:Page
+		showHeader="false"
+		enableScrolling="false"
+		class="sapUiContentPadding">
+		<m:content>
+			<Table id="myTable"
+				rows="{/Z801CBOOKS_ABSet}"
+				selectionMode="None">
+				<columns>
+					<Column 
+					width="8rem"
+					filterProperty="LastName"
+					sortProperty="LastName"
+					defaultFilterOperator="Contains">
+						<m:Label text="Last name" />
+							<template>
+							<m:Label text="{LastName}" />
+						</template>
+					</Column>
+					<Column width="8rem">
+						<m:Label text="Checkout Date" />
+							<template>
+						<m:Label text="{
+                                path: 'CheckoutDate',
+                                formatter : '.formatDate'
+                                }" />
+						</template>
+					</Column>
+					<Column width="8rem">
+						<m:Label text="Return Date" />
+							<template>
+							<m:Label text="{
+                                path: 'ReturnDate',
+                                formatter : '.formatDate'
+                                }" />
+						</template>
+					</Column>
+					<Column width="8rem">
+						<m:Label text="ISBN" />
+						<template>
+							<m:Label text="{Isbn}" />
+						</template>
+					</Column>
+					<Column width="9rem">
+						<m:Label text="Username" />
+						<template>
+							<m:Label text="{Username}" />
+						</template>
+					</Column>
+					<Column 
+					id="author"
+					sortProperty="Author"
+					filterProperty="Author" 
+					defaultFilterOperator="Contains"
+					width="11rem">
+						<m:Label text="Author" />
+						<template>
+							<m:Label text="{Author}" wrapping="false" />
+						</template>
+					</Column>
+					<Column width="11rem"
+					filterProperty="Title"
+					sortProperty="Title"
+					defaultFilterOperator="Contains">
+						<m:Label text="Title" />
+						<template>
+							<m:Label text="{Title}" />
+						</template>
+					</Column>
+					<Column width="11rem"
+					filterProperty="FirstName"
+					sortProperty="FirstName"
+						defaultFilterOperator="Contains">
+						<m:Label text="FirstName" />
+						<template>
+							<m:Label text="{FirstName}" />
+						</template>
+					</Column>
+				</columns>
+			</Table>
+
+		</m:content>
+	</m:Page>
+</mvc:View>
+<!-- <Shell>
+<App busy="{appView>/busy}" class="sapUiSizeCompact">
+<pages>
+<Page title="{i18n>peoplePageTitle}">
+   <Table id="idBooksTable"
+        headerText="{i18n>booksListTitle}"
+        class="sapUiResponsiveMargin"
+        width="auto"
+		items="{
+			path: '/Z801CBOOKS_ABSet'
+		}"
+		growing="true"
+		growingThreshold="10">
+	<headerToolbar>
+								<OverflowToolbar>
+									<content>
+										<ToolbarSpacer/>
+									</content>
+								</OverflowToolbar>
+							</headerToolbar>
+		<columns>
+			<Column>
+				<Text text="Last name" />
+			</Column>
+			<Column>
+				<Text text="Checkout Date" />
+			</Column>
+			<Column>
+				<Text text="Return Date" />
+			</Column>
+			<Column>
+				<Text text="Isbn" />
+			</Column>
+			<Column>
+				<Text text="Username" />
+			</Column>
+			 <Column>
+				<Text text="Author" />
+			</Column>
+			 <Column>
+				<Text text="Title" />
+			</Column>
+			 <Column>
+				<Text text="First name" />
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<Text text="{LastName}"/>
+					<Text text="{
+                            path: 'CheckoutDate',
+                            formatter : '.formatDate'
+                            }"
+                        />
+                        <Text text="{
+                            path: 'ReturnDate',
+                            formatter : '.formatDate'
+                            }" 
+                        />
+					<Text text="{ReturnDate}" 
+					/>
+						<Text text="{= parseInt(${Isbn}) }"/>
+					<Text text="{Username}"/>
+					<Text text="{Author}"/>
+					<Text text="{Title}"/>
+					<Text text="{FirstName}"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+   	</Page>
+	</pages>
+	</App>
+	</Shell>
+</mvc:View> -->

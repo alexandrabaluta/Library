@@ -1,0 +1,114 @@
+<mvc:View
+   controllerName="org.ubb.books.controller.Book"
+   xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m">
+<Shell>
+<App busy="{appView>/busy}" class="sapUiSizeCompact">
+<pages>
+<Page title="{i18n>homePageTitle}">
+<Panel expandable="true" expanded="true" headerText="Search a book" width="auto" class="sapUiResponsiveMargin">
+	<headerToolbar>
+			<OverflowToolbar active="true" press="onOverflowToolbarPress">
+				<Title text="Search a book" />
+				<ToolbarSpacer />
+				<Button icon="sap-icon://search" />
+			</OverflowToolbar>
+		</headerToolbar>
+<content>
+		  <SearchField id="searchId" placeholder="Search after ISBN" width="40%" selectOnFocus="false"/>
+		  <SearchField id="searchTitle" placeholder="Search after title" width="40%" selectOnFocus="false"/>
+			<SearchField id="searchAuthor" placeholder="Search after author" width="40%" selectOnFocus="false"/>
+		  	<DatePicker 
+			  id="searchDate" 
+			  valueFormat="yyyy-MM-dd" 
+			  placeholder="Search after date published" 
+			  width="40%"/>
+		<SearchField id="searchLanguage" placeholder="Search after language" width="40%" selectOnFocus="false"/>
+		<Button
+											id="searchBook"
+											text="Search book"
+											icon="sap-icon://search"
+											press=".onSearch">
+											<layoutData>
+												<OverflowToolbarLayoutData priority="NeverOverflow"/>
+											</layoutData>
+										</Button>
+</content>
+</Panel>
+   <Table id="idBooksTable"
+     
+		mode="MultiSelect"
+        headerText="{i18n>booksListTitle}"
+        class="sapUiResponsiveMargin"
+        width="auto"
+		items="{
+			path: '/SEARCHBOOKS_ABSet',
+			parameters: {
+									$count: true,
+									$$updateGroupId : 'peopleGroup'
+								}
+		}"
+		growing="true"
+		growingThreshold="10">
+	<headerToolbar>
+								<OverflowToolbar>
+									<content>
+										<ToolbarSpacer/>
+										<Button
+											id="checkoutBook"
+											text="Check out book"
+											type="Ghost"
+											icon="sap-icon://copy"
+											tooltip="{i18n>createButtonText}"
+											press=".checkoutBook">
+											<layoutData>
+												<OverflowToolbarLayoutData priority="NeverOverflow"/>
+											</layoutData>
+										</Button>
+									</content>
+								</OverflowToolbar>
+							</headerToolbar>
+		<columns>
+			<Column>
+				<Text text="Title" />
+			</Column>
+			<Column>
+				<Text text="ISBN" />
+			</Column>
+			<Column>
+				<Text text="Author" />
+			</Column>
+			<Column>
+				<Text text="Published on" />
+			</Column>
+			<Column>
+				<Text text="Language" />
+			</Column>
+         <Column>
+				<Text text="Available books" />
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<Text text="{Title}"/>
+						<Text text="{= parseInt(${Isbn}) }"/>
+						<Text text="{Author}"/>
+					<Text text="{ 
+							path: 'PublishedDate',
+							type: 'sap.ui.model.type.Date'
+							
+               			}" 
+					/>
+					<Text text="{Language}"/>
+					<Text text="{= parseInt(${NrAvailableBooks})}"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+   	</Page>
+	</pages>
+	</App>
+	</Shell>
+</mvc:View>
